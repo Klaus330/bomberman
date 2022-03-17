@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class BombSpawner : MonoBehaviour
+public class PlayerBombSpawner : MonoBehaviour
 {
     public Tilemap tilemap;
     public Tile wallTile; 
     public Tile destructableTile;
-
     public GameObject bombPrefab;
-    public Transform playerPosition;
-    public float countdown = 2f;
+    public int maxNrOfBombs = 1;
+    public int numberOfBombs = 1;
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey("space"))
         {   
-            Vector3 position = playerPosition.position;
-            Vector3Int cell = tilemap.WorldToCell(position);
+            if(numberOfBombs == 0)
+            {
+                return;
+            }
+
+            Vector3Int cell = tilemap.WorldToCell(gameObject.transform.position);
 
             Tile placingTile = tilemap.GetTile<Tile>(cell);
 
@@ -35,5 +38,14 @@ public class BombSpawner : MonoBehaviour
     {
         Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
         Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
+
+        numberOfBombs--;
+    }
+
+    public void increaseNumberOfBombs()
+    {
+        if(maxNrOfBombs > numberOfBombs){
+            numberOfBombs++;
+        }
     }
 }
