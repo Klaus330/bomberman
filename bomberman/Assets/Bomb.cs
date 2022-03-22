@@ -17,4 +17,9 @@ public class Bomb : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+           GetComponent<Collider2D>().isTrigger = false;
+    }
 }
