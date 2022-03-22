@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerReactions : MonoBehaviour
 {
+    public int boost = 2;
+
     public void die()
     {
         // TO DO: dying logic

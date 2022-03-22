@@ -7,7 +7,7 @@ public class Bomb : MonoBehaviour
     public float countdown = 2f;
     public GameObject player;
     private string PLAYER_TAG = "Player";
-    
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag(PLAYER_TAG);
@@ -20,7 +20,8 @@ public class Bomb : MonoBehaviour
         
         if(countdown <= 0f)
         {
-            FindObjectOfType<MapDestroyer>().Explode(transform.position);
+            int boost = player.GetComponent<PlayerReactions>().boost;
+            FindObjectOfType<MapDestroyer>().Explode(transform.position, boost);
             Destroy(gameObject);
             player.GetComponent<PlayerBombSpawner>().increaseNumberOfBombs();
         }
