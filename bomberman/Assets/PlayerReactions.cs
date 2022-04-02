@@ -6,7 +6,8 @@ public class PlayerReactions : MonoBehaviour
 {
     public int boost = 2;
     public bool canMoveBombs = false;
-    public float canMoveCountdown = 30f;
+    public float canMoveCountdown = 5f;
+    public float hasBoostCountDown = 5f;
 
     public void die()
     {
@@ -27,9 +28,18 @@ public class PlayerReactions : MonoBehaviour
             if(canMoveCountdown <= 0)
             {
                 canMoveBombs = false;
-                canMoveCountdown = 0f;
+                canMoveCountdown = 20f;
             }
             canMoveCountdown -= Time.fixedDeltaTime;
+        }
+
+        if(boost > 2)
+        {
+            if(hasBoostCountDown <= 0){
+                boost = 2;
+                hasBoostCountDown = 20f;
+            }
+            hasBoostCountDown -= Time.fixedDeltaTime;
         }
     }
 }

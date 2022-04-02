@@ -21,7 +21,7 @@ public class Explosion : MonoBehaviour
         float randomChance = Random.Range(0.0f, 1.0f);
         Debug.Log("Random change");
         Debug.Log(randomChance);
-        if(randomChance < 0.015)
+        if(randomChance < 0.018)
         {
             FindObjectOfType<PowerupSpawner>().spawnPowerUp(transform.position);
         }
