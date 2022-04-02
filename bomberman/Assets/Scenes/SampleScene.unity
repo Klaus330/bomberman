@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 57843597}
   m_Layer: 0
   m_Name: gameplay
-  m_TagString: Untagged
+  m_TagString: Playground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2744,6 +2744,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651154628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4856519354919660812, guid: a41620c89c4bbfd45aab98a5f8a70608, type: 3}
+  m_PrefabInstance: {fileID: 2989762222513047250}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae9fe269eb0f8b4881d379fdb57b1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &886940442
 GameObject:
   m_ObjectHideFlags: 0
@@ -9092,6 +9103,53 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1188791799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1188791801}
+  - component: {fileID: 1188791800}
+  m_Layer: 0
+  m_Name: PowerupSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1188791800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188791799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2581fdc591e5f4e99de30eae56289d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUps:
+  - {fileID: 3371589552225555318, guid: 4486570579986ac48bd223da10d0f3dc, type: 3}
+  - {fileID: 3371589552225555318, guid: 94ba3a3df854368438d93bcfe818af0c, type: 3}
+  tilemap: {fileID: 57843601}
+--- !u!4 &1188791801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188791799}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.730485, y: 5.1961126, z: -7.7959743}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2989762222513047250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9111,6 +9169,10 @@ PrefabInstance:
       propertyPath: numberOfBombs
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2989762221997429265, guid: a41620c89c4bbfd45aab98a5f8a70608, type: 3}
+      propertyPath: playerReactions
+      value: 
+      objectReference: {fileID: 651154628}
     - target: {fileID: 2989762221997429266, guid: a41620c89c4bbfd45aab98a5f8a70608, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -9162,6 +9224,10 @@ PrefabInstance:
     - target: {fileID: 4856519354919660812, guid: a41620c89c4bbfd45aab98a5f8a70608, type: 3}
       propertyPath: boost
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856519354919660812, guid: a41620c89c4bbfd45aab98a5f8a70608, type: 3}
+      propertyPath: canMoveBombs
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a41620c89c4bbfd45aab98a5f8a70608, type: 3}

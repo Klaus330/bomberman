@@ -11,11 +11,18 @@ public class PlayerBombSpawner : MonoBehaviour
     public GameObject bombPrefab;
     public int maxNrOfBombs = 1;
     public int numberOfBombs = 1;
+    public PlayerReactions playerReactions;
+
+
+    void Start()
+    {
+        tilemap = GameObject.FindGameObjectWithTag("Playground").GetComponent<Tilemap>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("space"))
+        if (Input.GetKeyDown("space"))
         {   
             if(numberOfBombs == 0)
             {
@@ -34,15 +41,21 @@ public class PlayerBombSpawner : MonoBehaviour
             }
 
             placeBomb(cell);
+            numberOfBombs--;
         }
     }
 
     void placeBomb(Vector3Int cell)
     {
         Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
-        Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
 
-        numberOfBombs--;
+        if(playerReactions.itCanMoveBombs())
+        {
+            Debug.Log("[Debug] Change rigidbody");
+            bombPrefab.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        }
+
+        Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
     }
 
     public void increaseNumberOfBombs()

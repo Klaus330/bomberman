@@ -187,6 +187,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 8618329912947536213, guid: 4b43215557b4c2b4e8337818f6cebd40, type: 3}
   maxNrOfBombs: 1
   numberOfBombs: 1
+  playerReactions: {fileID: 4856519354919660812}
 --- !u!114 &4856519354919660812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,3 +200,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae9fe269eb0f8b4881d379fdb57b1fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boost: 2
