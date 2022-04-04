@@ -34,7 +34,7 @@ public class PlayerBombSpawner : MonoBehaviour
         {
             return;
         }
-        
+
         int x = Mathf.FloorToInt(gameObject.transform.position.x);
         int y = Mathf.FloorToInt(gameObject.transform.position.y);
         int z = Mathf.FloorToInt(gameObject.transform.position.z);
@@ -53,12 +53,6 @@ public class PlayerBombSpawner : MonoBehaviour
     void placeBomb(Vector3Int cell)
     {
         Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
-
-        if(playerReactions.itCanMoveBombs())
-        {
-            Debug.Log("[Debug] Change rigidbody");
-            bombPrefab.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        }
 
         Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
     }

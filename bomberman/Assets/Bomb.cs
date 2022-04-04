@@ -39,8 +39,10 @@ public class Bomb : MonoBehaviour
             return;
         }
         
-        if(abilities.itCanMoveBombs()){
-            Debug.Log("hit");
+        if (abilities.itCanMoveBombs()) {
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        }else{
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         }
     }
 
