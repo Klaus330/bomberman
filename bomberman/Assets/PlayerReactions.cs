@@ -10,7 +10,7 @@ public class PlayerReactions : MonoBehaviour
     public float hasBoostCountDown = 5f;
     public float hasMoreBombsCountDown = 5f;
     public bool hasMoreBombs = false;
-
+    
     public void die()
     {
         // TO DO: dying logic
