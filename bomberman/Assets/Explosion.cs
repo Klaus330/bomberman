@@ -12,6 +12,11 @@ public class Explosion : MonoBehaviour
         Debug.Log(other.tag);
         if(other.gameObject.CompareTag(PLAYER_TAG))
         {
+            if(other.gameObject.GetComponent<PlayerReactions>().isInvincible)
+            {
+                return;
+            }
+
             other.gameObject.GetComponent<PlayerReactions>().die();
         }else if(other.gameObject.CompareTag(POWERUP_TAG)){
             Destroy(other.gameObject);
@@ -22,7 +27,7 @@ public class Explosion : MonoBehaviour
     {
         Destroy(gameObject);
         float randomChance = Random.Range(0.0f, 1.0f);
-        if(randomChance < 0.018)
+        if(randomChance < 0.023)
         {
             FindObjectOfType<PowerupSpawner>().spawnPowerUp(transform.position);
         }

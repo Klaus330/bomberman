@@ -12,6 +12,9 @@ public class PlayerReactions : MonoBehaviour
     public bool hasMoreBombs = false;
     public bool isPlacingBombsRandom = false;
     public float isPlacingBombsRandomCountDown = 10f;
+    public bool isInvincible = false;
+    public float isInvincibleCountDown = 5f;
+
 
     public void die()
     {
@@ -76,5 +79,15 @@ public class PlayerReactions : MonoBehaviour
             isPlacingBombsRandomCountDown -= Time.fixedDeltaTime;
         }
 
+        if(isInvincible)
+        {
+            if(isInvincibleCountDown <= 0)
+            {
+                isInvincible = false;
+                isInvincibleCountDown = 5f;
+            }
+
+            isInvincibleCountDown -= Time.fixedDeltaTime;
+        }
     }
 }
