@@ -24,25 +24,30 @@ public class PlayerBombSpawner : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {   
-            if(numberOfBombs == 0)
-            {
-                return;
-            }
-
-            int x = Mathf.FloorToInt(gameObject.transform.position.x);
-            int y = Mathf.FloorToInt(gameObject.transform.position.y);
-            int z = Mathf.FloorToInt(gameObject.transform.position.z);
-            Vector3 playerPosition = new Vector3(x, y, z);
-            Vector3Int cell = tilemap.WorldToCell(playerPosition);
-            Tile placingTile = tilemap.GetTile<Tile>(cell);
-
-            if(placingTile == wallTile || placingTile == destructableTile){
-                return;
-            }
-
-            placeBomb(cell);
-            numberOfBombs--;
+            placeBombAtCurrentPosition();
         }
+    }
+
+    public void placeBombAtCurrentPosition()
+    {
+        if(numberOfBombs == 0)
+        {
+            return;
+        }
+        
+        int x = Mathf.FloorToInt(gameObject.transform.position.x);
+        int y = Mathf.FloorToInt(gameObject.transform.position.y);
+        int z = Mathf.FloorToInt(gameObject.transform.position.z);
+        Vector3 playerPosition = new Vector3(x, y, z);
+        Vector3Int cell = tilemap.WorldToCell(playerPosition);
+        Tile placingTile = tilemap.GetTile<Tile>(cell);
+
+        if(placingTile == wallTile || placingTile == destructableTile){
+            return;
+        }
+
+        placeBomb(cell);
+        numberOfBombs--;
     }
 
     void placeBomb(Vector3Int cell)

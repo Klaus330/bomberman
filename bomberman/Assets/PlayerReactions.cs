@@ -10,7 +10,9 @@ public class PlayerReactions : MonoBehaviour
     public float hasBoostCountDown = 5f;
     public float hasMoreBombsCountDown = 5f;
     public bool hasMoreBombs = false;
-    
+    public bool isPlacingBombsRandom = false;
+    public float isPlacingBombsRandomCountDown = 10f;
+
     public void die()
     {
         // TO DO: dying logic
@@ -53,6 +55,25 @@ public class PlayerReactions : MonoBehaviour
             }
 
             hasMoreBombsCountDown -= Time.fixedDeltaTime;
+        }   
+
+
+        if(isPlacingBombsRandom)
+        {
+            if(isPlacingBombsRandomCountDown <= 0)
+            {
+                isPlacingBombsRandomCountDown = 10f;
+                isPlacingBombsRandom = false;
+            }
+
+            float chance = Random.Range(0f, 1f);
+
+            if(chance < 0.025)
+            {
+               GetComponent<PlayerBombSpawner>().placeBombAtCurrentPosition();
+            }
+
+            isPlacingBombsRandomCountDown -= Time.fixedDeltaTime;
         }
 
     }
