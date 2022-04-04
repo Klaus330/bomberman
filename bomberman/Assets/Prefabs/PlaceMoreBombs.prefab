@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3371589552225555322}
   - component: {fileID: 3371589552225555321}
   - component: {fileID: 3371589552225555319}
-  - component: {fileID: 8899597356176439110}
+  - component: {fileID: 5788980379805326490}
   m_Layer: 0
-  m_Name: CanMoveBombsPowerUp
+  m_Name: PlaceMoreBombs
   m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,9 +98,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.11764706, g: 0.9254902, b: 0.4101196, a: 1}
+  m_Color: {r: 0.9254902, g: 0.21786977, b: 0.11764706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -110,7 +110,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8899597356176439110
+--- !u!114 &5788980379805326490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,6 +119,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3371589552225555318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8da11333c7a85646ad6c126b148d932, type: 3}
+  m_Script: {fileID: 11500000, guid: a90d6f0b89962f84ea8bedf0574ff510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

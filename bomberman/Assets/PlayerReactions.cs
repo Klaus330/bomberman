@@ -8,6 +8,8 @@ public class PlayerReactions : MonoBehaviour
     public bool canMoveBombs = false;
     public float canMoveCountdown = 5f;
     public float hasBoostCountDown = 5f;
+    public float hasMoreBombsCountDown = 5f;
+    public bool hasMoreBombs = false;
 
     public void die()
     {
@@ -41,5 +43,17 @@ public class PlayerReactions : MonoBehaviour
             }
             hasBoostCountDown -= Time.fixedDeltaTime;
         }
+
+        if(hasMoreBombs)
+        {
+            if(hasMoreBombsCountDown <= 0){
+                gameObject.GetComponent<PlayerBombSpawner>().maxNrOfBombs = 1;
+                gameObject.GetComponent<PlayerBombSpawner>().numberOfBombs = 1;
+                hasMoreBombs = false;
+            }
+
+            hasMoreBombsCountDown -= Time.fixedDeltaTime;
+        }
+
     }
 }
