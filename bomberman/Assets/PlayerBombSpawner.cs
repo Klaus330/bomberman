@@ -11,35 +11,56 @@ public class PlayerBombSpawner : MonoBehaviour
     public GameObject bombPrefab;
     public int maxNrOfBombs = 1;
     public int numberOfBombs = 1;
+    public PlayerReactions playerReactions;
+
+
+    void Start()
+    {
+        tilemap = GameObject.FindGameObjectWithTag("Playground").GetComponent<Tilemap>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("space"))
+        if (Input.GetKeyDown("space"))
         {   
-            if(numberOfBombs == 0)
-            {
-                return;
-            }
-
-            Vector3Int cell = tilemap.WorldToCell(gameObject.transform.position);
-
-            Tile placingTile = tilemap.GetTile<Tile>(cell);
-
-            if(placingTile == wallTile || placingTile == destructableTile){
-                return;
-            }
-
-            placeBomb(cell);
+            placeBombAtCurrentPosition();
         }
+    }
+
+    public void placeBombAtCurrentPosition()
+    {
+        if(numberOfBombs == 0)
+        {
+            return;
+        }
+        
+        int x = Mathf.FloorToInt(gameObject.transform.position.x);
+        int y = Mathf.FloorToInt(gameObject.transform.position.y);
+        int z = Mathf.FloorToInt(gameObject.transform.position.z);
+        Vector3 playerPosition = new Vector3(x, y, z);
+        Vector3Int cell = tilemap.WorldToCell(playerPosition);
+        Tile placingTile = tilemap.GetTile<Tile>(cell);
+
+        if(placingTile == wallTile || placingTile == destructableTile){
+            return;
+        }
+
+        placeBomb(cell);
+        numberOfBombs--;
     }
 
     void placeBomb(Vector3Int cell)
     {
         Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
-        Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
 
-        numberOfBombs--;
+        if(playerReactions.itCanMoveBombs())
+        {
+            Debug.Log("[Debug] Change rigidbody");
+            bombPrefab.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        }
+
+        Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
     }
 
     public void increaseNumberOfBombs()

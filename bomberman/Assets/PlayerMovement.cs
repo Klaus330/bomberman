@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-
+    public bool isSpeedAffected = false;
+    public float speedAfectedCountDown = 5f;
     public Rigidbody2D rb;
     public Animator animator;
 
@@ -25,5 +26,15 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
+
+        if (isSpeedAffected) {
+            if (speedAfectedCountDown <= 0){
+                isSpeedAffected = false;
+                speedAfectedCountDown = 10f;
+                moveSpeed = 5f;
+            }
+
+            speedAfectedCountDown -= Time.fixedDeltaTime;
+        }
     }
 }

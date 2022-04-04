@@ -4,34 +4,32 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public float countdown = 1f;
-    public GameObject player;
-
     private string PLAYER_TAG = "Player";
+    private string POWERUP_TAG = "Powerup";
     
-    void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        player = GameObject.FindGameObjectWithTag(PLAYER_TAG);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        countdown -= Time.deltaTime;
-        
-        if(countdown <= 0f)
+        Debug.Log(other.tag);
+        if(other.gameObject.CompareTag(PLAYER_TAG))
         {
-            Destroy(gameObject);
-            player.GetComponent<PlayerBombSpawner>().increaseNumberOfBombs();
+            if(other.gameObject.GetComponent<PlayerReactions>().isInvincible)
+            {
+                return;
+            }
+
+            other.gameObject.GetComponent<PlayerReactions>().die();
+        }else if(other.gameObject.CompareTag(POWERUP_TAG)){
+            Destroy(other.gameObject);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void destroyObject()
     {
-        Debug.Log(other.gameObject.tag);
-        if(other.gameObject.CompareTag(PLAYER_TAG))
+        Destroy(gameObject);
+        float randomChance = Random.Range(0.0f, 1.0f);
+        if(randomChance < 0.023)
         {
-            Debug.Log("DEAD PLAYER");
+            FindObjectOfType<PowerupSpawner>().spawnPowerUp(transform.position);
         }
     }
 }

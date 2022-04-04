@@ -9,46 +9,47 @@ public class MapDestroyer : MonoBehaviour
 
     public Tile wallTile;
     public Tile destructableTile;
-
     public GameObject explosionPrefab;
 
-    public int boost = 2;
-
-    public void Explode(Vector2 worldPos)
+    public void Explode(Vector2 worldPos, int boost = 1)
     {
         Vector3Int originCell = tilemap.WorldToCell(worldPos);
 
         ExplodeCell(originCell);
-        ExplodeInPositiveDirections(originCell);
-        ExplodeInNegativeDirections(originCell);
+        ExplodeInPositiveDirections(originCell, boost);
+        ExplodeInNegativeDirections(originCell, boost);
     }
 
-    void ExplodeInPositiveDirections(Vector3Int originCell)
+    void ExplodeInPositiveDirections(Vector3Int originCell, int boost)
     {
-        ExplodeInADireciton(originCell, true, false);
-        ExplodeInADireciton(originCell, false, false);
+        ExplodeInADireciton(originCell, boost, true, false);
+        ExplodeInADireciton(originCell, boost, false, false);
     }
 
-    void ExplodeInNegativeDirections(Vector3Int originCell)
+    void ExplodeInNegativeDirections(Vector3Int originCell, int boost)
     {
-        ExplodeInADireciton(originCell, true, true);
-        ExplodeInADireciton(originCell, false, true);
+        ExplodeInADireciton(originCell, boost, true, true);
+        ExplodeInADireciton(originCell, boost, false, true);
     }
 
-    void ExplodeInADireciton(Vector3Int originCell, bool isXDirection, bool isNegative)
+    void ExplodeInADireciton(Vector3Int originCell, int boost, bool isXDirection, bool isNegative)
     {
         bool cellExploded = true;
-        for(int i = 1; i < boost; i++)
+        for(int i = 1; i < boost && cellExploded; i++)
         {
             int value = isNegative ? i*(-1) : i;
-
-            if(cellExploded && isXDirection)
+            Vector3Int offset = isXDirection ? new Vector3Int(value, 0, 0) : new Vector3Int(0, value, 0);
+    
+            Vector3Int nextCellPosition = originCell + offset;
+            Tile nextCell = tilemap.GetTile<Tile>(nextCellPosition);
+            cellExploded = ExplodeCell(nextCellPosition);
+            // Debug.Log(nextCell);
+            if(nextCell == destructableTile)
             {
-                cellExploded = ExplodeCell(originCell + new Vector3Int(value, 0, 0));
-            }else if(cellExploded && !isXDirection)
-            {
-                cellExploded = ExplodeCell(originCell + new Vector3Int(0, value, 0));
+                // Debug.Log(System.String.Format("HIT A DESTRUCTABLE. In xdirection:{0}, isNegative:{1}, iteration: {2}", isXDirection, isNegative, i));
+                cellExploded = false;
             }
+            
         }
     }
 
