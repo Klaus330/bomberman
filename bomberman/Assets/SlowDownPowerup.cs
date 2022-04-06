@@ -11,6 +11,7 @@ public class SlowDownPowerup : MonoBehaviour
     {   
         if(other.gameObject.CompareTag(PLAYER_TAG))
         {
+            FindObjectOfType<AudioManager>().Play("bonus");
             other.gameObject.GetComponent<PlayerMovement>().isSpeedAffected = true;
              other.gameObject.GetComponent<PlayerMovement>().moveSpeed = modifiedSpeed;
             Destroy(gameObject);

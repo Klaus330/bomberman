@@ -10,6 +10,7 @@ public class PlaceBombsRandomPowerup : MonoBehaviour
     {   
         if(other.gameObject.CompareTag(PLAYER_TAG))
         {
+            FindObjectOfType<AudioManager>().Play("bonus");
             other.gameObject.GetComponent<PlayerReactions>().isPlacingBombsRandom = true;
             Destroy(gameObject);
         }

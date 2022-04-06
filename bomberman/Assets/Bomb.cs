@@ -27,6 +27,7 @@ public class Bomb : MonoBehaviour
             Destroy(gameObject);
             player.GetComponent<PlayerBombSpawner>().increaseNumberOfBombs();
             countdown = 0;
+            FindObjectOfType<AudioManager>().Play("explosion");
         }
     }
 

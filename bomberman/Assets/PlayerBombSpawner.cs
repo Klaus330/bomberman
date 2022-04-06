@@ -55,6 +55,7 @@ public class PlayerBombSpawner : MonoBehaviour
         Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
 
         Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
+        FindObjectOfType<AudioManager>().Play("placeBomb");
     }
 
     public void increaseNumberOfBombs()

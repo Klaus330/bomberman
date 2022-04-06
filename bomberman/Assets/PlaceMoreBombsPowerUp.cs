@@ -10,6 +10,7 @@ public class PlaceMoreBombsPowerUp : MonoBehaviour
     {   
         if(other.gameObject.CompareTag(PLAYER_TAG))
         {
+            FindObjectOfType<AudioManager>().Play("bonus");
             other.gameObject.GetComponent<PlayerBombSpawner>().maxNrOfBombs++;
             other.gameObject.GetComponent<PlayerBombSpawner>().numberOfBombs++;
             other.gameObject.GetComponent<PlayerReactions>().hasMoreBombs = true;
