@@ -10,7 +10,7 @@ public class Bomb : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag(PLAYER_TAG);
+        //player = GameObject.FindGameObjectWithTag(PLAYER_TAG);
     }
 
     // Update is called once per frame

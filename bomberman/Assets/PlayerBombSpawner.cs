@@ -36,10 +36,30 @@ public class PlayerBombSpawner : MonoBehaviour
     //        placeBomb(cell);
     //    }
     //}
-
-    void placeBomb(Vector3Int cell)
+    void Start()
     {
-        Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
+        tilemap = GameObject.FindGameObjectWithTag("Playground").GetComponent<Tilemap>();
+    }
+    public void placeBomb()
+    {
+        if (numberOfBombs == 0)
+                  {
+                     return;
+                  }
+
+                int x = Mathf.FloorToInt(gameObject.transform.position.x);
+                  int y = Mathf.FloorToInt(gameObject.transform.position.y);
+                  int z = Mathf.FloorToInt(gameObject.transform.position.z);
+                   Vector3 playerPosition = new Vector3(x, y, z);
+                    Vector3Int cell = tilemap.WorldToCell(playerPosition);
+                   Tile placingTile = tilemap.GetTile<Tile>(cell);
+
+                 if(placingTile == wallTile || placingTile == destructableTile){
+                        return;
+                  }
+
+            Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
+        bombPrefab.GetComponent<Bomb>().player = gameObject;
         Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
 
         numberOfBombs--;

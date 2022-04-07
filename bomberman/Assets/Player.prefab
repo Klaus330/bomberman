@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 6103559403827452421}
   - component: {fileID: 926453899829102067}
   - component: {fileID: 2720260708811491708}
-  - component: {fileID: -5729303493876468266}
+  - component: {fileID: 8812242328278845632}
+  - component: {fileID: 3770452090860482121}
+  - component: {fileID: -842477421778824410}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -77,7 +79,23 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9cb9c2f4-5247-4179-8fc5-6a3dbcba304e
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  m_NeverAutoSwitchControlSchemes: 0
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3770452090860482121}
+        m_TargetAssemblyTypeName: PlayerBombSpawner, Assembly-CSharp
+        m_MethodName: placeBomb
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 33b395df-f9bf-4adc-9006-b97bec916b62
+    m_ActionName: Player/PlaceBomb[/Keyboard/space,/Keyboard/numpadEnter]
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: 0
@@ -146,6 +164,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  animator: {fileID: 0}
+  isHorizontalHash: 0
+  isVerticalHash: 0
+  isSpeedHash: 0
 --- !u!50 &926453899829102067
 Rigidbody2D:
   serializedVersion: 4
@@ -193,7 +215,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.61099005, y: 0.7583089}
   m_EdgeRadius: 0
---- !u!95 &-5729303493876468266
+--- !u!95 &8812242328278845632
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -206,9 +228,40 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 995a02aa54214bd428b36611eb819e7f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3770452090860482121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4524141265567801294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8553451c0d63407429f77a0fbe4c27b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 0}
+  wallTile: {fileID: 11400000, guid: dd221daf9de1c624b82c1f90bda93bae, type: 2}
+  destructableTile: {fileID: 11400000, guid: f5cead61b9ade294eaef2b42ad349148, type: 2}
+  bombPrefab: {fileID: 8618329912947536213, guid: 4b43215557b4c2b4e8337818f6cebd40, type: 3}
+  maxNrOfBombs: 1
+  numberOfBombs: 1
+--- !u!114 &-842477421778824410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4524141265567801294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae9fe269eb0f8b4881d379fdb57b1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boost: 2
