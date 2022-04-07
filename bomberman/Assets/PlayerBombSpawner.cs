@@ -11,58 +11,34 @@ public class PlayerBombSpawner : MonoBehaviour
     public GameObject bombPrefab;
     public int maxNrOfBombs = 1;
     public int numberOfBombs = 1;
+    public PlayerReactions playerReactions;
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (Input.GetKey("space"))
-    //    {   
-    //        if(numberOfBombs == 0)
-    //        {
-    //            return;
-    //        }
-
-    //        int x = Mathf.FloorToInt(gameObject.transform.position.x);
-    //        int y = Mathf.FloorToInt(gameObject.transform.position.y);
-    //        int z = Mathf.FloorToInt(gameObject.transform.position.z);
-    //        Vector3 playerPosition = new Vector3(x, y, z);
-    //        Vector3Int cell = tilemap.WorldToCell(playerPosition);
-    //        Tile placingTile = tilemap.GetTile<Tile>(cell);
-
-    //        if(placingTile == wallTile || placingTile == destructableTile){
-    //            return;
-    //        }
-
-    //        placeBomb(cell);
-    //    }
-    //}
     void Start()
     {
         tilemap = GameObject.FindGameObjectWithTag("Playground").GetComponent<Tilemap>();
     }
+
     public void placeBomb()
     {
         if (numberOfBombs == 0)
-                  {
-                     return;
-                  }
+        {
+            return;
+        }
 
-                int x = Mathf.FloorToInt(gameObject.transform.position.x);
-                  int y = Mathf.FloorToInt(gameObject.transform.position.y);
-                  int z = Mathf.FloorToInt(gameObject.transform.position.z);
-                   Vector3 playerPosition = new Vector3(x, y, z);
-                    Vector3Int cell = tilemap.WorldToCell(playerPosition);
-                   Tile placingTile = tilemap.GetTile<Tile>(cell);
+        int x = Mathf.FloorToInt(gameObject.transform.position.x);
+        int y = Mathf.FloorToInt(gameObject.transform.position.y);
+        int z = Mathf.FloorToInt(gameObject.transform.position.z);
+        Vector3 playerPosition = new Vector3(x, y, z);
+            Vector3Int cell = tilemap.WorldToCell(playerPosition);
+        Tile placingTile = tilemap.GetTile<Tile>(cell);
 
-                 if(placingTile == wallTile || placingTile == destructableTile){
-                        return;
-                  }
+        if(placingTile == wallTile || placingTile == destructableTile){
+                return;
+        }
 
-            Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
+        Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
         bombPrefab.GetComponent<Bomb>().player = gameObject;
         Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
-
-        numberOfBombs--;
     }
 
     public void increaseNumberOfBombs()

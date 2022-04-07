@@ -7,8 +7,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5;
     private Vector2 movementInput;
+    public float moveSpeed = 5f;
+    public bool isSpeedAffected = false;
+    public float speedAfectedCountDown = 5f;
     public Animator animator;
     public PlayerControls input;
     public int isHorizontalHash;
@@ -29,13 +31,12 @@ public class PlayerMovement : MonoBehaviour
         isSpeedHash = Animator.StringToHash("Speed");
     }
 
-
     private void Update()
     {
         handleMovement();
         if (movementPressed)
         {
-            transform.Translate(new Vector3(movementInput.x, movementInput.y, 0) * speed * Time.deltaTime);
+            transform.Translate(new Vector3(movementInput.x, movementInput.y, 0) * moveSpeed * Time.deltaTime);
         }
     }
 
@@ -59,6 +60,15 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = ctx.ReadValue<Vector2>();
         movementPressed = movementInput.x != 0 || movementInput.y != 0;
+        if (isSpeedAffected) {
+            if (speedAfectedCountDown <= 0){
+                isSpeedAffected = false;
+                speedAfectedCountDown = 10f;
+                moveSpeed = 5f;
+            }
+
+            speedAfectedCountDown -= Time.fixedDeltaTime;
+        }
     }
 }
 

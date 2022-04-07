@@ -35,29 +35,21 @@ public class MapDestroyer : MonoBehaviour
     void ExplodeInADireciton(Vector3Int originCell, int boost, bool isXDirection, bool isNegative)
     {
         bool cellExploded = true;
-        for(int i = 1; i < boost; i++)
+        for(int i = 1; i < boost && cellExploded; i++)
         {
             int value = isNegative ? i*(-1) : i;
-
-            if(cellExploded && isXDirection)
+            Vector3Int offset = isXDirection ? new Vector3Int(value, 0, 0) : new Vector3Int(0, value, 0);
+    
+            Vector3Int nextCellPosition = originCell + offset;
+            Tile nextCell = tilemap.GetTile<Tile>(nextCellPosition);
+            cellExploded = ExplodeCell(nextCellPosition);
+            // Debug.Log(nextCell);
+            if(nextCell == destructableTile)
             {
-                Vector3Int nextCellPosition = originCell + new Vector3Int(value, 0, 0);
-                Tile nextCell = tilemap.GetTile<Tile>(nextCellPosition);
-                cellExploded = ExplodeCell(nextCellPosition);
-                if(nextCell == destructableTile)
-                {
-                    cellExploded = false;
-                }
-            }else if(cellExploded && !isXDirection)
-            {
-                Vector3Int nextCellPosition = originCell + new Vector3Int(0, value, 0);
-                Tile nextCell = tilemap.GetTile<Tile>(nextCellPosition);
-                cellExploded = ExplodeCell(nextCellPosition);
-                if(nextCell == destructableTile)
-                {
-                    cellExploded = false;
-                }
+                // Debug.Log(System.String.Format("HIT A DESTRUCTABLE. In xdirection:{0}, isNegative:{1}, iteration: {2}", isXDirection, isNegative, i));
+                cellExploded = false;
             }
+            
         }
     }
 
