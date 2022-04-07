@@ -163,7 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e36b9803bd65f4f82acefea0b05974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  moveSpeed: 5
+  isSpeedAffected: 0
+  speedAfectedCountDown: 5
   animator: {fileID: 0}
   isHorizontalHash: 0
   isVerticalHash: 0
@@ -252,6 +254,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 8618329912947536213, guid: 4b43215557b4c2b4e8337818f6cebd40, type: 3}
   maxNrOfBombs: 1
   numberOfBombs: 1
+  playerReactions: {fileID: -842477421778824410}
 --- !u!114 &-842477421778824410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,3 +268,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boost: 2
+  canMoveBombs: 0
+  canMoveCountdown: 5
+  hasBoostCountDown: 5
+  hasMoreBombsCountDown: 5
+  hasMoreBombs: 0
+  isPlacingBombsRandom: 0
+  isPlacingBombsRandomCountDown: 10
+  isInvincible: 0
+  isInvincibleCountDown: 5

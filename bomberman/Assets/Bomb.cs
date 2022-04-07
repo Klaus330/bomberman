@@ -6,12 +6,6 @@ public class Bomb : MonoBehaviour
 {
     public float countdown = 2f;
     public GameObject player;
-    private string PLAYER_TAG = "Player";
-
-    void Start()
-    {
-        //player = GameObject.FindGameObjectWithTag(PLAYER_TAG);
-    }
 
     // Update is called once per frame
     void Update()

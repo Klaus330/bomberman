@@ -29,7 +29,7 @@ public class PlayerBombSpawner : MonoBehaviour
         int y = Mathf.FloorToInt(gameObject.transform.position.y);
         int z = Mathf.FloorToInt(gameObject.transform.position.z);
         Vector3 playerPosition = new Vector3(x, y, z);
-            Vector3Int cell = tilemap.WorldToCell(playerPosition);
+        Vector3Int cell = tilemap.WorldToCell(playerPosition);
         Tile placingTile = tilemap.GetTile<Tile>(cell);
 
         if(placingTile == wallTile || placingTile == destructableTile){
@@ -39,6 +39,7 @@ public class PlayerBombSpawner : MonoBehaviour
         Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
         bombPrefab.GetComponent<Bomb>().player = gameObject;
         Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
+        numberOfBombs--;
     }
 
     public void increaseNumberOfBombs()

@@ -40,6 +40,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        if (isSpeedAffected) {
+            if (speedAfectedCountDown <= 0){
+                isSpeedAffected = false;
+                speedAfectedCountDown = 10f;
+                moveSpeed = 5f;
+            }
+
+            speedAfectedCountDown -= Time.fixedDeltaTime;
+        }
+    }
+
     public void handleMovement()
     {
         animator.SetFloat("Horizontal", movementInput.x);
@@ -60,15 +73,6 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = ctx.ReadValue<Vector2>();
         movementPressed = movementInput.x != 0 || movementInput.y != 0;
-        if (isSpeedAffected) {
-            if (speedAfectedCountDown <= 0){
-                isSpeedAffected = false;
-                speedAfectedCountDown = 10f;
-                moveSpeed = 5f;
-            }
-
-            speedAfectedCountDown -= Time.fixedDeltaTime;
-        }
     }
 }
 
