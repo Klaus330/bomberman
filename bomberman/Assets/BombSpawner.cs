@@ -14,22 +14,22 @@ public class BombSpawner : MonoBehaviour
     public float countdown = 2f;
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey("space"))
-        {   
-            Vector3 position = playerPosition.position;
-            Vector3Int cell = tilemap.WorldToCell(position);
+    //void Update()
+    //{
+    //    if (Input.GetKey("space"))
+    //    {   
+    //        Vector3 position = playerPosition.position;
+    //        Vector3Int cell = tilemap.WorldToCell(position);
 
-            Tile placingTile = tilemap.GetTile<Tile>(cell);
+    //        Tile placingTile = tilemap.GetTile<Tile>(cell);
 
-            if(placingTile == wallTile || placingTile == destructableTile){
-                return;
-            }
+    //        if(placingTile == wallTile || placingTile == destructableTile){
+    //            return;
+    //        }
 
-            placeBomb(cell);
-        }
-    }
+    //        placeBomb(cell);
+    //    }
+    //}
 
     void placeBomb(Vector3Int cell)
     {

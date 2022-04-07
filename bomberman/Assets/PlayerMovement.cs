@@ -1,32 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(CharacterController))]
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Vector2 movementInput;
     public float moveSpeed = 5f;
     public bool isSpeedAffected = false;
     public float speedAfectedCountDown = 5f;
-    public Rigidbody2D rb;
     public Animator animator;
+    public PlayerControls input;
+    public int isHorizontalHash;
+    public int isVerticalHash;
+    public int isSpeedHash;
+    bool movementPressed;
 
-    Vector2 movement;
-
-    void Update()
+    public void Awake()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        input = new PlayerControls();
+    }
 
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+    public void Start()
+    {
+        animator = GetComponent<Animator>();
+        isHorizontalHash = Animator.StringToHash("Horizontal");
+        isVerticalHash = Animator.StringToHash("Vertical");
+        isSpeedHash = Animator.StringToHash("Speed");
+    }
+
+    private void Update()
+    {
+        handleMovement();
+        if (movementPressed)
+        {
+            transform.Translate(new Vector3(movementInput.x, movementInput.y, 0) * moveSpeed * Time.deltaTime);
+        }
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-
-
         if (isSpeedAffected) {
             if (speedAfectedCountDown <= 0){
                 isSpeedAffected = false;
@@ -37,4 +52,28 @@ public class PlayerMovement : MonoBehaviour
             speedAfectedCountDown -= Time.fixedDeltaTime;
         }
     }
+
+    public void handleMovement()
+    {
+        animator.SetFloat("Horizontal", movementInput.x);
+        animator.SetFloat("Vertical", movementInput.y);
+        animator.SetFloat("Speed", movementInput.sqrMagnitude);
+    }
+    public void OnEnable()
+    {
+        input.Player.Enable();
+    }
+
+    public void OnDisable()
+    {
+        input.Player.Disable();
+    }
+
+    public void OnMove(InputAction.CallbackContext ctx)
+    {
+        movementInput = ctx.ReadValue<Vector2>();
+        movementPressed = movementInput.x != 0 || movementInput.y != 0;
+    }
 }
+
+    
