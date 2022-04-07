@@ -11,14 +11,13 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.tag);
         if(other.gameObject.CompareTag(PLAYER_TAG))
         {
             if(other.gameObject.GetComponent<PlayerReactions>().isInvincible)
             {
                 return;
             }
-
+        
             other.gameObject.GetComponent<PlayerReactions>().die();
         }else if(other.gameObject.CompareTag(POWERUP_TAG)){
             Destroy(other.gameObject);

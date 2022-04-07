@@ -10,6 +10,7 @@ public class InvinciblePowerup : MonoBehaviour
     {   
         if(other.gameObject.CompareTag(PLAYER_TAG))
         {
+            FindObjectOfType<AudioManager>().Play("bonus");
             other.gameObject.GetComponent<PlayerReactions>().isInvincible = true;
             Destroy(gameObject);
         }

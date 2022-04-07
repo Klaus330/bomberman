@@ -9,9 +9,10 @@ public class CanMoveBombsPowerUp : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("HIII2IT!");
+        
         if(other.gameObject.CompareTag(PLAYER_TAG))
         {
+            FindObjectOfType<AudioManager>().Play("bonus");
             other.gameObject.GetComponent<PlayerReactions>().canMoveBombs = true;
             Destroy(gameObject);
         }

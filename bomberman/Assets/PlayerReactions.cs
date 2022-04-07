@@ -20,6 +20,7 @@ public class PlayerReactions : MonoBehaviour
     {
         // TO DO: dying logic
         Debug.Log("DEAD PLAYER");
+        FindObjectOfType<AudioManager>().Play("deathVoice");
         Destroy(gameObject);
     }
 
