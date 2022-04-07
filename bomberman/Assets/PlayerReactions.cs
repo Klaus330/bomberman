@@ -73,7 +73,7 @@ public class PlayerReactions : MonoBehaviour
 
             if(chance < 0.025)
             {
-               GetComponent<PlayerBombSpawner>().placeBombAtCurrentPosition();
+               GetComponent<PlayerBombSpawner>().placeBomb();
             }
 
             isPlacingBombsRandomCountDown -= Time.fixedDeltaTime;

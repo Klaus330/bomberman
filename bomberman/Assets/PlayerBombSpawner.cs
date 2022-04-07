@@ -13,24 +13,14 @@ public class PlayerBombSpawner : MonoBehaviour
     public int numberOfBombs = 1;
     public PlayerReactions playerReactions;
 
-
     void Start()
     {
         tilemap = GameObject.FindGameObjectWithTag("Playground").GetComponent<Tilemap>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void placeBomb()
     {
-        if (Input.GetKeyDown("space"))
-        {   
-            placeBombAtCurrentPosition();
-        }
-    }
-
-    public void placeBombAtCurrentPosition()
-    {
-        if(numberOfBombs == 0)
+        if (numberOfBombs == 0)
         {
             return;
         }
@@ -43,18 +33,13 @@ public class PlayerBombSpawner : MonoBehaviour
         Tile placingTile = tilemap.GetTile<Tile>(cell);
 
         if(placingTile == wallTile || placingTile == destructableTile){
-            return;
+                return;
         }
 
-        placeBomb(cell);
-        numberOfBombs--;
-    }
-
-    void placeBomb(Vector3Int cell)
-    {
         Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
-
+        bombPrefab.GetComponent<Bomb>().player = gameObject;
         Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
+        numberOfBombs--;
     }
 
     public void increaseNumberOfBombs()
