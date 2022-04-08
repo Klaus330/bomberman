@@ -1,12 +1,18 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using System;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] Slider volumeSlider;
+
     public Sound[] soundsList; 
 
-    public static AudioManager instance; 
+    public static AudioManager instance;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -41,4 +47,18 @@ public class AudioManager : MonoBehaviour
 
         sound.source.Play();
     }
+
+    void Start()
+    {
+        Sound sound = Array.Find(soundsList, sound => sound.name == "BackgroundMusic");
+        sound.source.volume = volumeSlider.value;
+        Play("BackgroundMusic");
+    }
+
+    public void SetVolume(string name, float volume)
+    {
+        Sound sound = Array.Find(soundsList, sound => sound.name == name);
+        sound.source.volume = volume;
+    }
+
 }

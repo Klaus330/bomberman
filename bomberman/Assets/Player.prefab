@@ -277,3 +277,5 @@ MonoBehaviour:
   isPlacingBombsRandomCountDown: 10
   isInvincible: 0
   isInvincibleCountDown: 5
+  gameOverScreen: {fileID: 0}
+  timeStart: 0
