@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerReactions : MonoBehaviour
 {
@@ -14,13 +16,16 @@ public class PlayerReactions : MonoBehaviour
     public float isPlacingBombsRandomCountDown = 10f;
     public bool isInvincible = false;
     public float isInvincibleCountDown = 5f;
+    int maxPlatform = 10;
+    public float timeStart = 0f;
 
 
-    public void die()
+    public async void die()
     {
         // TO DO: dying logic
         Debug.Log("DEAD PLAYER");
         FindObjectOfType<AudioManager>().Play("deathVoice");
+        FindObjectOfType<GameManager>().GameOver(gameObject.name);
         Destroy(gameObject);
     }
 

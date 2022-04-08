@@ -12,7 +12,8 @@ public class PlayerManager : MonoBehaviour
     {
         PlayerInput p1 = PlayerInput.Instantiate(playerPrefab, controlScheme: "Keyboard1", pairWithDevice: Keyboard.current);
         PlayerInput p2 = PlayerInput.Instantiate(playerPrefab, controlScheme: "Keyboard2", pairWithDevice: Keyboard.current);
-        
+        p1.name = "Player 1";
+        p2.name = "Player 2";
     }
 
     public void OnPlayerJoined(PlayerInput playerInput)

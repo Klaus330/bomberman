@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3714b8319d6494e9af6a3ec6f36298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPowerUpChance: 0.023
+  spawnPowerUpChance: 0.3
 --- !u!61 &2714110636924085046
 BoxCollider2D:
   m_ObjectHideFlags: 0
