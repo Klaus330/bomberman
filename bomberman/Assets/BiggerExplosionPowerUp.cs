@@ -11,7 +11,7 @@ public class BiggerExplosionPowerUp : MonoBehaviour
     {
         if(other.gameObject.CompareTag(PLAYER_TAG))
         {
-            FindObjectOfType<AudioManager>().Play("bonus");
+            //FindObjectOfType<AudioManager>().Play("bonus");
             other.gameObject.GetComponent<PlayerReactions>().boost++;
             Destroy(gameObject);
         }

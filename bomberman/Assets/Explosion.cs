@@ -6,7 +6,6 @@ public class Explosion : MonoBehaviour
 {
     private string PLAYER_TAG = "Player";
     private string POWERUP_TAG = "Powerup";
-    public float spawnPowerUpChance = 0.05f;
 
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -27,10 +26,5 @@ public class Explosion : MonoBehaviour
     public void destroyObject()
     {
         Destroy(gameObject);
-        float randomChance = Random.Range(0.0f, 1.0f);
-        if(randomChance < spawnPowerUpChance)
-        {
-            FindObjectOfType<PowerupSpawner>().spawnPowerUp(transform.position);
-        }
     }
 }

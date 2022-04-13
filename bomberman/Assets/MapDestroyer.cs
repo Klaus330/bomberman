@@ -10,6 +10,7 @@ public class MapDestroyer : MonoBehaviour
     public Tile wallTile;
     public Tile destructableTile;
     public GameObject explosionPrefab;
+    public float spawnPowerUpChance = 0.6f;
 
     public void Explode(Vector2 worldPos, int boost = 1)
     {
@@ -46,14 +47,25 @@ public class MapDestroyer : MonoBehaviour
             // Debug.Log(nextCell);
             if(nextCell == destructableTile)
             {
+                float randomChance = Random.Range(0.0f, 1.0f);
+                if (randomChance < spawnPowerUpChance)
+                {
+                    StartCoroutine(spawnarPower(nextCellPosition));
+                }
                 // Debug.Log(System.String.Format("HIT A DESTRUCTABLE. In xdirection:{0}, isNegative:{1}, iteration: {2}", isXDirection, isNegative, i));
                 cellExploded = false;
             }
             
         }
     }
+    IEnumerator spawnarPower(Vector3Int cell)
+    {
+        Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
+        yield return new WaitForSecondsRealtime(0.8f);
+        FindObjectOfType<PowerupSpawner>().spawnPowerUp(cellCenterPosition);
+    }
 
-    bool ExplodeCell(Vector3Int cell)
+        bool ExplodeCell(Vector3Int cell)
     {
         Tile cellTile = tilemap.GetTile<Tile>(cell);
 

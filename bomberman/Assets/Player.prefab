@@ -270,12 +270,11 @@ MonoBehaviour:
   boost: 2
   canMoveBombs: 0
   canMoveCountdown: 5
-  hasBoostCountDown: 5
+  hasBoostCountDown: 10000
   hasMoreBombsCountDown: 5
   hasMoreBombs: 0
   isPlacingBombsRandom: 0
   isPlacingBombsRandomCountDown: 10
   isInvincible: 0
   isInvincibleCountDown: 5
-  gameOverScreen: {fileID: 0}
   timeStart: 0

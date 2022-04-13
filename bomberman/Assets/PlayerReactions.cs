@@ -61,6 +61,7 @@ public class PlayerReactions : MonoBehaviour
                 gameObject.GetComponent<PlayerBombSpawner>().maxNrOfBombs = 1;
                 gameObject.GetComponent<PlayerBombSpawner>().numberOfBombs = 1;
                 hasMoreBombs = false;
+                hasBoostCountDown = 5f;
             }
 
             hasMoreBombsCountDown -= Time.fixedDeltaTime;
