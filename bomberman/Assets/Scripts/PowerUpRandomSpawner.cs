@@ -14,6 +14,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
     public List<Vector3Int> cells;
     public List<GameObject> powerUps;
     public int listCount;
+    public List<int> emptyCells;
 
     public float periodicity = 2f;
 
@@ -26,6 +27,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
         {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
             cells.Add(localPlace);
+            emptyCells.Add(0);
         }
 
         listCount = cells.Count;
@@ -38,6 +40,8 @@ public class PowerUpRandomSpawner : MonoBehaviour
         if(periodicity <= 0)
         {
             int index = Random.Range(0, listCount);
+            if (emptyCells[index] == 1)
+                return;
             Vector3Int cellPositionInt = cells[index];
             Tile cell = tilemapGameplay.GetTile<Tile>(cellPositionInt);
 
@@ -49,6 +53,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
                 GameObject powerupPrefab = powerUps[index];
 
                 Instantiate(powerupPrefab, cellCenterPosition, Quaternion.identity);
+                emptyCells[index] = 1;
             }
 
             periodicity = 2f;
@@ -56,4 +61,20 @@ public class PowerUpRandomSpawner : MonoBehaviour
 
         periodicity -= Time.fixedDeltaTime;
     }
+    public void emptyCell(Vector3 poz)
+    {
+        int cellPosition = cells.FindIndex(cell => cell == tilemapDirt.WorldToCell(poz));
+        emptyCells[cellPosition] = 0;
+    }
+    public void blockCell(Vector3 poz)
+    {
+        int cellPosition = cells.FindIndex(cell => cell == tilemapDirt.WorldToCell(poz));
+        emptyCells[cellPosition] = 1;
+    }
+    public bool isPositionValide(Vector3 poz)
+    {
+        int cellPosition = cells.FindIndex(cell => cell == tilemapDirt.WorldToCell(poz));
+        return emptyCells[cellPosition] == 0;
+    }
+
 }

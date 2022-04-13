@@ -10,7 +10,7 @@ public class PlayerReactions : MonoBehaviour
     public bool canMoveBombs = false;
     public float canMoveCountdown = 5f;
     public float hasBoostCountDown = 5f;
-    public float hasMoreBombsCountDown = 5f;
+    public float hasMoreBombsCountDown = 50f;
     public bool hasMoreBombs = false;
     public bool isPlacingBombsRandom = false;
     public float isPlacingBombsRandomCountDown = 10f;
@@ -61,7 +61,7 @@ public class PlayerReactions : MonoBehaviour
                 gameObject.GetComponent<PlayerBombSpawner>().maxNrOfBombs = 1;
                 gameObject.GetComponent<PlayerBombSpawner>().numberOfBombs = 1;
                 hasMoreBombs = false;
-                hasBoostCountDown = 5f;
+                hasMoreBombsCountDown = 50f;
             }
 
             hasMoreBombsCountDown -= Time.fixedDeltaTime;
