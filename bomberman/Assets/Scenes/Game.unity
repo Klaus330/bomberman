@@ -2850,7 +2850,7 @@ MonoBehaviour:
   wallTile: {fileID: 11400000, guid: dd221daf9de1c624b82c1f90bda93bae, type: 2}
   destructableTile: {fileID: 11400000, guid: f5cead61b9ade294eaef2b42ad349148, type: 2}
   explosionPrefab: {fileID: 487202965259030832, guid: e2e2b6027a362274b858bcd3ad14cb40, type: 3}
-  spawnPowerUpChance: 0.6
+  spawnPowerUpChance: 0.24
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -9574,7 +9574,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemapGameplay: {fileID: 57843601}
   tilemapDirt: {fileID: 1584070842}
+  wallTile: {fileID: 11400000, guid: dd221daf9de1c624b82c1f90bda93bae, type: 2}
+  destructableTile: {fileID: 11400000, guid: f5cead61b9ade294eaef2b42ad349148, type: 2}
   bombPrefab: {fileID: 8618329912947536213, guid: 4b43215557b4c2b4e8337818f6cebd40, type: 3}
+  cells: []
+  powerUps:
+  - {fileID: 3371589552225555318, guid: 4486570579986ac48bd223da10d0f3dc, type: 3}
+  - {fileID: 3371589552225555318, guid: 94ba3a3df854368438d93bcfe818af0c, type: 3}
+  - {fileID: 3371589552225555318, guid: ccb7c5734a5a4d8499956905b8e558f4, type: 3}
+  - {fileID: 3371589552225555318, guid: b94cf423aac77e44292554ac455d0d40, type: 3}
+  - {fileID: 3371589552225555318, guid: 6519b140b699e8a4d92ef33436b4f600, type: 3}
+  - {fileID: 3371589552225555318, guid: 817be4083d370f3478e8675ba7ea70b2, type: 3}
+  listCount: 0
+  periodicity: 20
 --- !u!1 &968228939
 GameObject:
   m_ObjectHideFlags: 0
@@ -9971,7 +9983,7 @@ TilemapRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584070839}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
