@@ -8,6 +8,7 @@ public class MapDestroyer : MonoBehaviour
     public Tilemap tilemap;
 
     public Tile wallTile;
+    public Tile spirala;
     public Tile destructableTile;
     public GameObject explosionPrefab;
     public float spawnPowerUpChance = 0.6f;
@@ -71,7 +72,7 @@ public class MapDestroyer : MonoBehaviour
     {
         Tile cellTile = tilemap.GetTile<Tile>(cell);
 
-        if(cellTile == wallTile)
+        if(cellTile == wallTile || cellTile == spirala)
         {
             return false;
         }

@@ -19,13 +19,15 @@ public class PlayerReactions : MonoBehaviour
     int maxPlatform = 10;
     public float timeStart = 0f;
 
-
     public async void die()
     {
         // TO DO: dying logic
         Debug.Log("DEAD PLAYER");
         FindObjectOfType<AudioManager>().Play("deathVoice");
         FindObjectOfType<GameManager>().GameOver(gameObject.name);
+        FindObjectOfType<Timer>().stopTimer();
+        FindObjectOfType<AudioManager>().Stop("countdown");
+        FindObjectOfType<PowerUpRandomSpawner>().stopSpirala();
         Destroy(gameObject);
     }
 

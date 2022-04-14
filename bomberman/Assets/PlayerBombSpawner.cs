@@ -8,6 +8,7 @@ public class PlayerBombSpawner : MonoBehaviour
     public Tilemap tilemap;
     public Tile wallTile; 
     public Tile destructableTile;
+    public Tile spirala;
     public GameObject bombPrefab;
     public int maxNrOfBombs = 1;
     public int numberOfBombs = 1;
@@ -29,7 +30,7 @@ public class PlayerBombSpawner : MonoBehaviour
         Vector3Int cell = tilemap.WorldToCell(playerPosition);
         Tile placingTile = tilemap.GetTile<Tile>(cell);
 
-        if(placingTile == wallTile || placingTile == destructableTile || !FindObjectOfType<PowerUpRandomSpawner>().isPositionValide(playerPosition)){
+        if(placingTile == spirala || placingTile == wallTile || placingTile == destructableTile || !FindObjectOfType<PowerUpRandomSpawner>().isPositionValide(playerPosition)){
                 return;
         }
 
