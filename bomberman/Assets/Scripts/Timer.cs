@@ -25,10 +25,16 @@ public class Timer : MonoBehaviour
         takingAway = true;
         yield return new WaitForSeconds(1);
         secondLeft -= 1;
-        if (secondLeft < 10)
+        if (secondLeft < 10){
             textDisplay.GetComponent<Text>().text = "00:0" + secondLeft;
-        else
+
+        }
+        else{
+            if(secondLeft == 10){
+                FindObjectOfType<AudioManager>().Play("countdown");
+            }
             textDisplay.GetComponent<Text>().text = "00:" + secondLeft;
+        }
         takingAway = false;
     }
 }

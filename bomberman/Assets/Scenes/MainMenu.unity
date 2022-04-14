@@ -2431,6 +2431,24 @@ MonoBehaviour:
     pitch: 0.92
     loop: 0
     source: {fileID: 0}
+  - name: endgame
+    clip: {fileID: 8300000, guid: abb9e1aedda40fc46b9c7a4fd6024aa6, type: 3}
+    volume: 0.19
+    pitch: 0.92
+    loop: 0
+    source: {fileID: 0}
+  - name: spawnspirala
+    clip: {fileID: 8300000, guid: 0dcb5cb340907d54c992921e48b9bf4c, type: 3}
+    volume: 0.158
+    pitch: 0.92
+    loop: 0
+    source: {fileID: 0}
+  - name: countdown
+    clip: {fileID: 8300000, guid: 28839473654d7db4a8b5be157f22160c, type: 3}
+    volume: 0.201
+    pitch: 0.92
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1982290631
 Transform:
   m_ObjectHideFlags: 0

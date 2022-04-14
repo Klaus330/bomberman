@@ -21,11 +21,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver(string name)
     {
+        FindObjectOfType<AudioManager>().Play("endgame");
         if (name == "Player 1")
             winner.text = "Player 2";
         else
             winner.text = "Player 1";
         gameOverScreen.SetActive(true);
-
     }
 }

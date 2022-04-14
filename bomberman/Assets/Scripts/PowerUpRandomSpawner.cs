@@ -17,6 +17,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
     public int listCount;
     public List<int> emptyCells;
 
+    public float startSpirala = 16f;
     public float periodicity = 2f;
 
     void Start()
@@ -47,7 +48,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
             Vector3Int cellPositionInt = cells[index];
             Tile cell = tilemapGameplay.GetTile<Tile>(cellPositionInt);
 
-            if (cell != wallTile && cell != destructableTile)
+            if (cell != wallTile && cell != destructableTile && cell != spiralaWall)
             {
                 Vector3 cellCenterPosition = tilemapDirt.GetCellCenterWorld(cellPositionInt);
 
@@ -102,7 +103,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
         int dr1 = n;
         int dr2 = m;
         int st = -1;
-        yield return new WaitForSecondsRealtime(15f);
+        yield return new WaitForSecondsRealtime(startSpirala);
         while (k * (n + 1) < n * n / 2)
         {
             int count = k;
@@ -110,7 +111,8 @@ public class PowerUpRandomSpawner : MonoBehaviour
             {
                 st += 1;
                 tilemapGameplay.SetTile(cells[st], spiralaWall);
-                yield return new WaitForSecondsRealtime(0.2f);
+                FindObjectOfType<AudioManager>().Play("spawnspirala");
+                yield return new WaitForSecondsRealtime(1f);
                 count++;
             }
             count = k + 1;
@@ -118,7 +120,8 @@ public class PowerUpRandomSpawner : MonoBehaviour
             {
                 st += 14;
                 tilemapGameplay.SetTile(cells[st], spiralaWall);
-                yield return new WaitForSecondsRealtime(0.2f);
+                FindObjectOfType<AudioManager>().Play("spawnspirala");
+                yield return new WaitForSecondsRealtime(1f);
                 count++;
             }
             count = k + 1;
@@ -126,7 +129,8 @@ public class PowerUpRandomSpawner : MonoBehaviour
             {
                 st -= 1;
                 tilemapGameplay.SetTile(cells[st], spiralaWall);
-                yield return new WaitForSecondsRealtime(0.2f);
+                FindObjectOfType<AudioManager>().Play("spawnspirala");
+                yield return new WaitForSecondsRealtime(1f);
                 count++;
             }
             count = k + 1;
@@ -135,7 +139,8 @@ public class PowerUpRandomSpawner : MonoBehaviour
             {
                 st -= 14;
                 tilemapGameplay.SetTile(cells[st], spiralaWall);
-                yield return new WaitForSecondsRealtime(0.2f);
+                FindObjectOfType<AudioManager>().Play("spawnspirala");
+                yield return new WaitForSecondsRealtime(1f);
                 count++;
             }
             k++;

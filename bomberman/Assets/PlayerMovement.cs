@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public int isSpeedHash;
     bool movementPressed;
 
-    public float isDyingCountDown = 0.5f;
+    public float isDyingCountDown = 0.3f;
 
     public void Awake()
     {
