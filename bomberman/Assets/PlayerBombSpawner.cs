@@ -25,19 +25,20 @@ public class PlayerBombSpawner : MonoBehaviour
             return;
         }
 
-        int x = Mathf.FloorToInt(gameObject.transform.position.x);
-        int y = Mathf.FloorToInt(gameObject.transform.position.y);
-        int z = Mathf.FloorToInt(gameObject.transform.position.z);
-        Vector3 playerPosition = new Vector3(x, y, z);
+        // int x = Mathf.FloorToInt(gameObject.transform.position.x);
+        // int y = Mathf.FloorToInt(gameObject.transform.position.y);
+        // int z = Mathf.FloorToInt(gameObject.transform.position.z);
+        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         Vector3Int cell = tilemap.WorldToCell(playerPosition);
         Tile placingTile = tilemap.GetTile<Tile>(cell);
 
-        if(placingTile == wallTile || placingTile == destructableTile){
+        if(placingTile == wallTile || placingTile == destructableTile || !FindObjectOfType<PowerUpRandomSpawner>().isPositionValide(playerPosition)){
                 return;
         }
 
         Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
         bombPrefab.GetComponent<Bomb>().player = gameObject;
+        FindObjectOfType<PowerUpRandomSpawner>().blockCell(playerPosition);
         Instantiate(bombPrefab, cellCenterPosition, Quaternion.identity);
         FindObjectOfType<AudioManager>().Play("placeBomb");
         numberOfBombs--;

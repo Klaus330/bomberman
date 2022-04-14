@@ -11,11 +11,13 @@ public class MapDestroyer : MonoBehaviour
     public Tile destructableTile;
     public GameObject explosionPrefab;
     public float spawnPowerUpChance = 0.6f;
+    public GameObject player;
 
-    public void Explode(Vector2 worldPos, int boost = 1)
+    public void Explode(Vector2 worldPos, GameObject p, int boost = 1)
     {
+        player = p;
+        FindObjectOfType<PowerUpRandomSpawner>().emptyCell(new Vector3(worldPos.x,worldPos.y,0));
         Vector3Int originCell = tilemap.WorldToCell(worldPos);
-
         ExplodeCell(originCell);
         ExplodeInPositiveDirections(originCell, boost);
         ExplodeInNegativeDirections(originCell, boost);
@@ -65,7 +67,7 @@ public class MapDestroyer : MonoBehaviour
         FindObjectOfType<PowerupSpawner>().spawnPowerUp(cellCenterPosition);
     }
 
-        bool ExplodeCell(Vector3Int cell)
+     bool ExplodeCell(Vector3Int cell)
     {
         Tile cellTile = tilemap.GetTile<Tile>(cell);
 
@@ -82,6 +84,7 @@ public class MapDestroyer : MonoBehaviour
 
         // Create explosion
         Vector3 position = tilemap.GetCellCenterWorld(cell);
+        explosionPrefab.GetComponent<Explosion>().player = player;
         Instantiate(explosionPrefab, position, Quaternion.identity);
 
         return true;

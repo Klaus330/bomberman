@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanMoveBombsPowerUp : MonoBehaviour
+public class SmallerExplosionPowerUp : MonoBehaviour
 {
     private string PLAYER_TAG = "Player";
     private string EXPLOSION_TAG = "Explosion";
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
         if(other.gameObject.CompareTag(PLAYER_TAG))
         {
-            FindObjectOfType<AudioManager>().Play("bonus");
+            //FindObjectOfType<AudioManager>().Play("bonus");
             FindObjectOfType<PowerUpRandomSpawner>().emptyCell(transform.position);
-            other.gameObject.GetComponent<PlayerReactions>().canMoveBombs = true;
+            if (other.gameObject.GetComponent<PlayerReactions>().boost > 2)
+            {
+                other.gameObject.GetComponent<PlayerReactions>().boost--;
+            }
             Destroy(gameObject);
         }
 

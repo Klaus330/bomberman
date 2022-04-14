@@ -7,6 +7,7 @@ TagManager:
   - Playground
   - Powerup
   - Explosion
+  - Bomb
   layers:
   - Default
   - TransparentFX

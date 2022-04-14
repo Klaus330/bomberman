@@ -1121,7 +1121,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.31
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2427,7 +2427,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: BackgroundMusic
     clip: {fileID: 8300000, guid: d6e1b3759b697554a92f21c82146e871, type: 3}
-    volume: 0.3
+    volume: 0.058
     pitch: 0.92
     loop: 0
     source: {fileID: 0}
