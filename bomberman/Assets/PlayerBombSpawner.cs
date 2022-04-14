@@ -25,9 +25,9 @@ public class PlayerBombSpawner : MonoBehaviour
             return;
         }
 
-        // int x = Mathf.FloorToInt(gameObject.transform.position.x);
-        // int y = Mathf.FloorToInt(gameObject.transform.position.y);
-        // int z = Mathf.FloorToInt(gameObject.transform.position.z);
+        int x = Mathf.CeilToInt(gameObject.transform.position.x);
+        int y = Mathf.CeilToInt(gameObject.transform.position.y);
+        int z = Mathf.CeilToInt(gameObject.transform.position.z);
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         Vector3Int cell = tilemap.WorldToCell(playerPosition);
         Tile placingTile = tilemap.GetTile<Tile>(cell);

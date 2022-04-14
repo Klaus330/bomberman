@@ -9,6 +9,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
     public Tilemap tilemapGameplay;
     public Tilemap tilemapDirt;
     public Tile wallTile;
+    public Tile spiralaWall;
     public Tile destructableTile;
     public GameObject bombPrefab;
     public List<Vector3Int> cells;
@@ -90,7 +91,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
         Vector3Int cellCenter = cells[cellPosition];
         Tile currentCell = tilemapGameplay.GetTile<Tile>(cellCenter);
 
-        return currentCell != wallTile;
+        return currentCell != spiralaWall;
     }
 
     IEnumerator EndGame()
@@ -101,14 +102,14 @@ public class PowerUpRandomSpawner : MonoBehaviour
         int dr1 = n;
         int dr2 = m;
         int st = -1;
-        yield return new WaitForSecondsRealtime(60f);
+        yield return new WaitForSecondsRealtime(15f);
         while (k * (n + 1) < n * n / 2)
         {
             int count = k;
             while (count < dr1)
             {
                 st += 1;
-                tilemapGameplay.SetTile(cells[st], wallTile);
+                tilemapGameplay.SetTile(cells[st], spiralaWall);
                 yield return new WaitForSecondsRealtime(0.2f);
                 count++;
             }
@@ -116,7 +117,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
             while (count < dr2)
             {
                 st += 14;
-                tilemapGameplay.SetTile(cells[st], wallTile);
+                tilemapGameplay.SetTile(cells[st], spiralaWall);
                 yield return new WaitForSecondsRealtime(0.2f);
                 count++;
             }
@@ -124,7 +125,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
             while (count < dr1)
             {
                 st -= 1;
-                tilemapGameplay.SetTile(cells[st], wallTile);
+                tilemapGameplay.SetTile(cells[st], spiralaWall);
                 yield return new WaitForSecondsRealtime(0.2f);
                 count++;
             }
@@ -133,7 +134,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
             while (count < dr2)
             {
                 st -= 14;
-                tilemapGameplay.SetTile(cells[st], wallTile);
+                tilemapGameplay.SetTile(cells[st], spiralaWall);
                 yield return new WaitForSecondsRealtime(0.2f);
                 count++;
             }
