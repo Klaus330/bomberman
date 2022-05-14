@@ -19,8 +19,9 @@ public class PowerUpRandomSpawner : MonoBehaviour
 
     public IEnumerator coroutine;
     public bool buildSpirala = true;
-    public float startSpirala = 16f;
+    public float startSpirala = 46f;
     public float periodicity = 2f;
+    private IEnumerator coroutine;
 
     void Start()
     {
@@ -35,9 +36,13 @@ public class PowerUpRandomSpawner : MonoBehaviour
         }
 
         listCount = cells.Count;
-        // Debug.Log(listCount);
+        Debug.Log(listCount);
         coroutine = EndGame();
         StartCoroutine(coroutine);
+
+    public void stopSpirala()
+    {
+        StopCoroutine(coroutine);
     }
 
     // Update is called once per frame
@@ -88,13 +93,9 @@ public class PowerUpRandomSpawner : MonoBehaviour
 
     public bool isPositionValidForPlayer(Vector3 poz)
     {
-        // Debug.Log(poz);
-        // Debug.Log(tilemapDirt.WorldToCell(poz));
         int cellPosition = cells.FindIndex(cell => cell == tilemapDirt.WorldToCell(poz));
-        // Debug.Log(cellPosition);
         Vector3Int cellCenter = cells[cellPosition];
         Tile currentCell = tilemapGameplay.GetTile<Tile>(cellCenter);
-
         return currentCell != spiralaWall;
     }
 

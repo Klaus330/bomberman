@@ -252,6 +252,7 @@ MonoBehaviour:
   tilemap: {fileID: 0}
   wallTile: {fileID: 11400000, guid: dd221daf9de1c624b82c1f90bda93bae, type: 2}
   destructableTile: {fileID: 11400000, guid: f5cead61b9ade294eaef2b42ad349148, type: 2}
+  spirala: {fileID: 11400000, guid: c7fe508c0e4d95046a1c803443873c5f, type: 2}
   bombPrefab: {fileID: 8618329912947536213, guid: 4b43215557b4c2b4e8337818f6cebd40, type: 3}
   maxNrOfBombs: 1
   numberOfBombs: 1

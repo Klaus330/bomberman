@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public GameObject textDisplay;
-    public int secondLeft = 15;
+    public int secondLeft = 45;
     public bool takingAway = false;
+    private IEnumerator coroutine;
+
     void Start()
     {
         textDisplay.GetComponent<Text>().text = "00:" + secondLeft;
@@ -17,7 +19,8 @@ public class Timer : MonoBehaviour
     {
         if (takingAway == false && secondLeft > 0)
         {
-            StartCoroutine(TimerTake());
+            coroutine = TimerTake();
+            StartCoroutine(coroutine);
         }
     }
     IEnumerator TimerTake()
@@ -36,6 +39,11 @@ public class Timer : MonoBehaviour
             textDisplay.GetComponent<Text>().text = "00:" + secondLeft;
         }
         takingAway = false;
+    }
+
+    public void stopTimer()
+    {
+        StopCoroutine(coroutine);
     }
 }
 
