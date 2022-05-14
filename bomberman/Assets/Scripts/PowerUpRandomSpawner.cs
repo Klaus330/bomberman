@@ -17,6 +17,8 @@ public class PowerUpRandomSpawner : MonoBehaviour
     public int listCount;
     public List<int> emptyCells;
 
+    public IEnumerator coroutine;
+    public bool buildSpirala = true;
     public float startSpirala = 16f;
     public float periodicity = 2f;
 
@@ -24,7 +26,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
     {
         BoundsInt bounds = tilemapDirt.cellBounds;
         int i = 0;
-        Debug.Log("add cells");
+        // Debug.Log("add cells");
         foreach (Vector3Int pos in tilemapDirt.cellBounds.allPositionsWithin)
         {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
@@ -33,8 +35,9 @@ public class PowerUpRandomSpawner : MonoBehaviour
         }
 
         listCount = cells.Count;
-        Debug.Log(listCount);
-        StartCoroutine(EndGame());
+        // Debug.Log(listCount);
+        coroutine = EndGame();
+        StartCoroutine(coroutine);
     }
 
     // Update is called once per frame
@@ -88,7 +91,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
         // Debug.Log(poz);
         // Debug.Log(tilemapDirt.WorldToCell(poz));
         int cellPosition = cells.FindIndex(cell => cell == tilemapDirt.WorldToCell(poz));
-        Debug.Log(cellPosition);
+        // Debug.Log(cellPosition);
         Vector3Int cellCenter = cells[cellPosition];
         Tile currentCell = tilemapGameplay.GetTile<Tile>(cellCenter);
 
@@ -106,6 +109,13 @@ public class PowerUpRandomSpawner : MonoBehaviour
         yield return new WaitForSecondsRealtime(startSpirala);
         while (k * (n + 1) < n * n / 2)
         {
+
+            if(!buildSpirala)
+            {
+                // Debug.Log("STOP COROUTINE");
+                 StopCoroutine(coroutine);
+            }
+
             int count = k;
             while (count < dr1)
             {
