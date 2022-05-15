@@ -61,6 +61,7 @@ public class MapDestroyer : MonoBehaviour
             
         }
     }
+    
     IEnumerator spawnarPower(Vector3Int cell)
     {
         Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
@@ -70,16 +71,19 @@ public class MapDestroyer : MonoBehaviour
 
      bool ExplodeCell(Vector3Int cell)
     {
+        Debug.Log(System.String.Format("Position: {0}", cell));
         Tile cellTile = tilemap.GetTile<Tile>(cell);
 
         if(cellTile == wallTile || cellTile == spirala)
         {
+            Debug.Log(System.String.Format("Not Spawned: {0}", cell));
             return false;
         }
 
         // Remove the destructable tile
         if(cellTile == destructableTile)
         {
+            Debug.Log(System.String.Format("Destructable: {0}", cell));
             tilemap.SetTile(cell, null);
         }
 
