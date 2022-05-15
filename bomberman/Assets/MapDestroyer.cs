@@ -8,13 +8,17 @@ public class MapDestroyer : MonoBehaviour
     public Tilemap tilemap;
 
     public Tile wallTile;
+    public Tile spirala;
     public Tile destructableTile;
     public GameObject explosionPrefab;
+    public float spawnPowerUpChance = 0.6f;
+    public GameObject player;
 
-    public void Explode(Vector2 worldPos, int boost = 1)
+    public void Explode(Vector2 worldPos, GameObject p, int boost = 1)
     {
+        player = p;
+        FindObjectOfType<PowerUpRandomSpawner>().emptyCell(new Vector3(worldPos.x,worldPos.y,0));
         Vector3Int originCell = tilemap.WorldToCell(worldPos);
-
         ExplodeCell(originCell);
         ExplodeInPositiveDirections(originCell, boost);
         ExplodeInNegativeDirections(originCell, boost);
@@ -46,30 +50,46 @@ public class MapDestroyer : MonoBehaviour
             // Debug.Log(nextCell);
             if(nextCell == destructableTile)
             {
+                float randomChance = Random.Range(0.0f, 1.0f);
+                if (randomChance < spawnPowerUpChance)
+                {
+                    StartCoroutine(spawnarPower(nextCellPosition));
+                }
                 // Debug.Log(System.String.Format("HIT A DESTRUCTABLE. In xdirection:{0}, isNegative:{1}, iteration: {2}", isXDirection, isNegative, i));
                 cellExploded = false;
             }
             
         }
     }
-
-    bool ExplodeCell(Vector3Int cell)
+    
+    IEnumerator spawnarPower(Vector3Int cell)
     {
+        Vector3 cellCenterPosition = tilemap.GetCellCenterWorld(cell);
+        yield return new WaitForSecondsRealtime(0.8f);
+        FindObjectOfType<PowerupSpawner>().spawnPowerUp(cellCenterPosition);
+    }
+
+     bool ExplodeCell(Vector3Int cell)
+    {
+        Debug.Log(System.String.Format("Position: {0}", cell));
         Tile cellTile = tilemap.GetTile<Tile>(cell);
 
-        if(cellTile == wallTile)
+        if(cellTile == wallTile || cellTile == spirala)
         {
+            Debug.Log(System.String.Format("Not Spawned: {0}", cell));
             return false;
         }
 
         // Remove the destructable tile
         if(cellTile == destructableTile)
         {
+            Debug.Log(System.String.Format("Destructable: {0}", cell));
             tilemap.SetTile(cell, null);
         }
 
         // Create explosion
         Vector3 position = tilemap.GetCellCenterWorld(cell);
+        explosionPrefab.GetComponent<Explosion>().player = player;
         Instantiate(explosionPrefab, position, Quaternion.identity);
 
         return true;

@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // public Tilemap tilemapGameplay;
+    // public Tile wallTile;
     private Vector2 movementInput;
     public float moveSpeed = 5f;
     public bool isSpeedAffected = false;
@@ -17,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public int isVerticalHash;
     public int isSpeedHash;
     bool movementPressed;
+
+    public float isDyingCountDown = 0.3f;
 
     public void Awake()
     {
@@ -51,6 +55,15 @@ public class PlayerMovement : MonoBehaviour
 
             speedAfectedCountDown -= Time.fixedDeltaTime;
         }
+
+        if(isDyingCountDown <= 0){
+            if(!FindObjectOfType<PowerUpRandomSpawner>().isPositionValidForPlayer(transform.position)){
+                GetComponent<PlayerReactions>().die();
+            }
+            isDyingCountDown = 1f;
+        }   
+
+        isDyingCountDown -= Time.fixedDeltaTime;
     }
 
     public void handleMovement()

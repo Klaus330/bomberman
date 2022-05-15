@@ -149,7 +149,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!114 &6103559403827452421
 MonoBehaviour:
@@ -170,6 +170,7 @@ MonoBehaviour:
   isHorizontalHash: 0
   isVerticalHash: 0
   isSpeedHash: 0
+  isDyingCountDown: 1
 --- !u!50 &926453899829102067
 Rigidbody2D:
   serializedVersion: 4
@@ -204,10 +205,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.021045923, y: -0.45248055}
+  m_Offset: {x: 0.0065848827, y: 0.56699157}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    border: {x: 0, y: 0.4375, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 2, y: 2}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -215,7 +216,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.61099005, y: 0.7583089}
+  m_Size: {x: 0.58206797, y: 0.6571317}
   m_EdgeRadius: 0
 --- !u!95 &8812242328278845632
 Animator:
@@ -251,6 +252,7 @@ MonoBehaviour:
   tilemap: {fileID: 0}
   wallTile: {fileID: 11400000, guid: dd221daf9de1c624b82c1f90bda93bae, type: 2}
   destructableTile: {fileID: 11400000, guid: f5cead61b9ade294eaef2b42ad349148, type: 2}
+  spirala: {fileID: 11400000, guid: c7fe508c0e4d95046a1c803443873c5f, type: 2}
   bombPrefab: {fileID: 8618329912947536213, guid: 4b43215557b4c2b4e8337818f6cebd40, type: 3}
   maxNrOfBombs: 1
   numberOfBombs: 1
@@ -270,12 +272,11 @@ MonoBehaviour:
   boost: 2
   canMoveBombs: 0
   canMoveCountdown: 5
-  hasBoostCountDown: 5
+  hasBoostCountDown: 10000
   hasMoreBombsCountDown: 5
   hasMoreBombs: 0
   isPlacingBombsRandom: 0
   isPlacingBombsRandomCountDown: 10
   isInvincible: 0
   isInvincibleCountDown: 5
-  gameOverScreen: {fileID: 0}
   timeStart: 0

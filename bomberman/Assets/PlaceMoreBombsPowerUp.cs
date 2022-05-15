@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlaceMoreBombsPowerUp : MonoBehaviour
 {
     private string PLAYER_TAG = "Player";
-
+    const string MORE_BOMBS_TAG = "MoreBombs";
     private void OnTriggerEnter2D(Collider2D other)
     {   
         if(other.gameObject.CompareTag(PLAYER_TAG))
         {
             FindObjectOfType<AudioManager>().Play("bonus");
+            FindObjectOfType<PlayerStatusManager>().activatePowerUpForUser(other.gameObject, MORE_BOMBS_TAG);
+            FindObjectOfType<PowerUpRandomSpawner>().emptyCell(transform.position);
             other.gameObject.GetComponent<PlayerBombSpawner>().maxNrOfBombs++;
             other.gameObject.GetComponent<PlayerBombSpawner>().numberOfBombs++;
             other.gameObject.GetComponent<PlayerReactions>().hasMoreBombs = true;

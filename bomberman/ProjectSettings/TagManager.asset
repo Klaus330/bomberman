@@ -7,6 +7,15 @@ TagManager:
   - Playground
   - Powerup
   - Explosion
+  - Bomb
+  - MoveBombs
+  - MoreBombs
+  - Invincible
+  - SlowDown
+  - RandomBombs
+  - LessEffect
+  - Flame
+  - Bombs
   layers:
   - Default
   - TransparentFX

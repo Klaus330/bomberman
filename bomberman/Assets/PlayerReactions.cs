@@ -10,7 +10,7 @@ public class PlayerReactions : MonoBehaviour
     public bool canMoveBombs = false;
     public float canMoveCountdown = 5f;
     public float hasBoostCountDown = 5f;
-    public float hasMoreBombsCountDown = 5f;
+    public float hasMoreBombsCountDown = 50f;
     public bool hasMoreBombs = false;
     public bool isPlacingBombsRandom = false;
     public float isPlacingBombsRandomCountDown = 10f;
@@ -19,13 +19,16 @@ public class PlayerReactions : MonoBehaviour
     int maxPlatform = 10;
     public float timeStart = 0f;
 
-
     public async void die()
     {
         // TO DO: dying logic
         Debug.Log("DEAD PLAYER");
         FindObjectOfType<AudioManager>().Play("deathVoice");
         FindObjectOfType<GameManager>().GameOver(gameObject.name);
+        FindObjectOfType<PowerUpRandomSpawner>().buildSpirala = false;
+        FindObjectOfType<Timer>().stopTimer();
+        FindObjectOfType<AudioManager>().Stop("countdown");
+        FindObjectOfType<PowerUpRandomSpawner>().stopSpirala();
         Destroy(gameObject);
     }
 
@@ -61,6 +64,7 @@ public class PlayerReactions : MonoBehaviour
                 gameObject.GetComponent<PlayerBombSpawner>().maxNrOfBombs = 1;
                 gameObject.GetComponent<PlayerBombSpawner>().numberOfBombs = 1;
                 hasMoreBombs = false;
+                hasMoreBombsCountDown = 50f;
             }
 
             hasMoreBombsCountDown -= Time.fixedDeltaTime;

@@ -1121,7 +1121,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.31
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2427,7 +2427,25 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: BackgroundMusic
     clip: {fileID: 8300000, guid: d6e1b3759b697554a92f21c82146e871, type: 3}
-    volume: 0.3
+    volume: 0.058
+    pitch: 0.92
+    loop: 0
+    source: {fileID: 0}
+  - name: endgame
+    clip: {fileID: 8300000, guid: abb9e1aedda40fc46b9c7a4fd6024aa6, type: 3}
+    volume: 0.19
+    pitch: 0.92
+    loop: 0
+    source: {fileID: 0}
+  - name: spawnspirala
+    clip: {fileID: 8300000, guid: 0dcb5cb340907d54c992921e48b9bf4c, type: 3}
+    volume: 0.158
+    pitch: 0.92
+    loop: 0
+    source: {fileID: 0}
+  - name: countdown
+    clip: {fileID: 8300000, guid: 28839473654d7db4a8b5be157f22160c, type: 3}
+    volume: 0.201
     pitch: 0.92
     loop: 0
     source: {fileID: 0}

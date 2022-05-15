@@ -17,7 +17,7 @@ public class Bomb : MonoBehaviour
         if(countdown < 0f)
         {
             int boost = player.GetComponent<PlayerReactions>().boost;
-            FindObjectOfType<MapDestroyer>().Explode(transform.position, boost);
+            FindObjectOfType<MapDestroyer>().Explode(transform.position, player, boost);
             Destroy(gameObject);
             player.GetComponent<PlayerBombSpawner>().increaseNumberOfBombs();
             countdown = 0;
