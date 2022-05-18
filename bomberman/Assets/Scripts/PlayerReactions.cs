@@ -25,6 +25,7 @@ public class PlayerReactions : MonoBehaviour
         Debug.Log("DEAD PLAYER");
         FindObjectOfType<AudioManager>().Play("deathVoice");
         FindObjectOfType<GameManager>().GameOver(gameObject.name);
+        FindObjectOfType<PowerUpRandomSpawner>().buildSpirala = false;
         FindObjectOfType<Timer>().stopTimer();
         FindObjectOfType<AudioManager>().Stop("countdown");
         FindObjectOfType<PowerUpRandomSpawner>().stopSpirala();
