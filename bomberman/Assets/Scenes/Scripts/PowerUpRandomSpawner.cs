@@ -17,7 +17,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
     public int listCount;
     public List<int> emptyCells;
 
-    public float startSpirala = 46f;
+    public float startSpirala = 21f;
     public float periodicity = 2f;
     private IEnumerator coroutine;
 
