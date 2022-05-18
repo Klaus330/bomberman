@@ -8025,7 +8025,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.48600003}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 520, y: -0.000002861023}
+  m_AnchoredPosition: {x: 434, y: -0.000002861023}
   m_SizeDelta: {x: 1088.8, y: 490.455}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1117791690
@@ -11480,7 +11480,7 @@ MonoBehaviour:
   birthLimit: 3
   deathLimit: 3
   numR: 2
-  tmpSize: {x: 14, y: 12, z: 0}
+  tmpSize: {x: 16, y: 14, z: 0}
   topMap: {fileID: 57843601}
   topTile: {fileID: 11400000, guid: f5cead61b9ade294eaef2b42ad349148, type: 2}
   top2Tile: {fileID: 11400000, guid: dd221daf9de1c624b82c1f90bda93bae, type: 2}

@@ -40,11 +40,17 @@ public class TileAutomata : MonoBehaviour {
             terrainMap = new int[width, height];
             initPos();
             }
-
-        terrainMap[0, 0] = terrainMap[0, 1] = terrainMap[1, 0]  = 0;
-        terrainMap[width-1, 0] = terrainMap[width-1, 1] = terrainMap[width-2, 0]  = 0;
-        terrainMap[0, height-1] = terrainMap[0, height-2] = terrainMap[1, height-1]  = 0;
-        terrainMap[width-2, height-1] = terrainMap[width-1, height-2] = terrainMap[width-1, height-1]  = 0;
+        for(int i = 0; i < height; i++){
+            terrainMap[0, i] = terrainMap[width-1,i] = 2 ;
+        }
+        
+        for(int i = 0; i < width; i++){
+            terrainMap[i, 0] = terrainMap[i,height-1] = 2 ;
+        }          
+        terrainMap[1, 1] = terrainMap[1, 2] = terrainMap[2,1]  = 0;
+        terrainMap[width-2, 1] = terrainMap[width-2, 2] = terrainMap[width-3, 1]  = 0;
+        terrainMap[1, height-2] = terrainMap[1, height-3] = terrainMap[2, height-2]  = 0;
+        terrainMap[width-3, height-2] = terrainMap[width-2, height-3] = terrainMap[width-2, height-2]  = 0;
 
         for (int x = 0; x < width; x++)
         {
@@ -73,14 +79,16 @@ public class TileAutomata : MonoBehaviour {
 
     }
 
-	void Update () {
-
+	void Start () {
         doSim(numR);
+    }
+    void Update(){
         if (Input.GetMouseButtonDown(1))
             {
             clearMap(true);
+            doSim(numR);
             }   
-        }
+    }
     public void clearMap(bool complete)
     {
 
