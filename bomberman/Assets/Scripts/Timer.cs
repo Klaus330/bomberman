@@ -6,21 +6,33 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public GameObject textDisplay;
-    public int secondLeft = 120;
+    public int firstLeft = 1;
+    public int secondLeft = 10;
     public bool takingAway = false;
     private IEnumerator coroutine;
 
     void Start()
     {
-        textDisplay.GetComponent<Text>().text = "00:" + secondLeft;
+        textDisplay.GetComponent<Text>().text = "0" + firstLeft + ":" + secondLeft;
     }
 
     void Update()
     {
-        if (takingAway == false && secondLeft > 0)
+        if (takingAway == false)
         {
-            coroutine = TimerTake();
-            StartCoroutine(coroutine);
+            if (secondLeft > 0)
+            {
+                coroutine = TimerTake();
+                StartCoroutine(coroutine);
+            }
+            if (secondLeft == 0 && firstLeft > 0)
+            {
+
+                secondLeft = 60;
+                firstLeft -= 1;
+                coroutine = TimerTake();
+                StartCoroutine(coroutine);
+            }
         }
     }
     IEnumerator TimerTake()
@@ -28,15 +40,17 @@ public class Timer : MonoBehaviour
         takingAway = true;
         yield return new WaitForSeconds(1);
         secondLeft -= 1;
-        if (secondLeft < 10){
-            textDisplay.GetComponent<Text>().text = "00:0" + secondLeft;
-
+        if (secondLeft < 10)
+        {
+            textDisplay.GetComponent<Text>().text = "0" + firstLeft + ":0" + secondLeft;
         }
-        else{
-            if(secondLeft == 10){
+        else
+        {
+            if (firstLeft == 0 && secondLeft == 10)
+            {
                 FindObjectOfType<AudioManager>().Play("countdown");
             }
-            textDisplay.GetComponent<Text>().text = "00:" + secondLeft;
+            textDisplay.GetComponent<Text>().text = "0" + firstLeft + ":" + secondLeft;
         }
         takingAway = false;
     }
