@@ -79,7 +79,7 @@ public class TileAutomata : MonoBehaviour {
 
     }
 
-	void Start () {
+	void Awake() {
         doSim(numR);
     }
     void Update(){
