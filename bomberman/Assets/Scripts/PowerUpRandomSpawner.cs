@@ -19,7 +19,7 @@ public class PowerUpRandomSpawner : MonoBehaviour
 
     public IEnumerator coroutine;
     public bool buildSpirala = true;
-    public float startSpirala = 120f;
+    public float startSpirala = 16f;
     public float periodicity = 2f;
 
     void Start()
@@ -102,12 +102,13 @@ public class PowerUpRandomSpawner : MonoBehaviour
 
     IEnumerator EndGame()
     {
-        int n = 14;
-        int m = 12;
+        int n = 16;
+        int m = 14;
         int k = 0;
-        int dr1 = n;
-        int dr2 = m;
+        int dr1 = n + 2;
+        int dr2 = m + 2;
         int st = -1;
+        int ok = 0;
         yield return new WaitForSecondsRealtime(startSpirala);
         while (k * (n + 1) < n * n / 2)
         {
@@ -122,43 +123,50 @@ public class PowerUpRandomSpawner : MonoBehaviour
             while (count < dr1)
             {
                 st += 1;
+                if(ok>1){
                 tilemapGameplay.SetTile(cells[st], spiralaWall);
                 FindObjectOfType<AudioManager>().Play("spawnspirala");
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSecondsRealtime(0.2f);
+                }
                 count++;
             }
             count = k + 1;
             while (count < dr2)
             {
-                st += 14;
+                st += 16;
+                if(ok>1){
                 tilemapGameplay.SetTile(cells[st], spiralaWall);
                 FindObjectOfType<AudioManager>().Play("spawnspirala");
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSecondsRealtime(0.2f);
+                }
                 count++;
             }
             count = k + 1;
             while (count < dr1)
             {
                 st -= 1;
+                if(ok>1){
                 tilemapGameplay.SetTile(cells[st], spiralaWall);
                 FindObjectOfType<AudioManager>().Play("spawnspirala");
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSecondsRealtime(0.2f);
+                }
                 count++;
             }
             count = k + 1;
             dr2--;
             while (count < dr2)
             {
-                st -= 14;
+                st -= 16;
+                if(ok>1){
                 tilemapGameplay.SetTile(cells[st], spiralaWall);
                 FindObjectOfType<AudioManager>().Play("spawnspirala");
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSecondsRealtime(0.2f);
+                }
                 count++;
             }
+            ok++;
             k++;
             dr1--;
         }
     }
-
-
 }
