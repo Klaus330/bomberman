@@ -48,8 +48,6 @@ public class PowerUpRandomSpawner : MonoBehaviour
         }
         listCount = cells.Count;
 
-        tilemapDirt.SetTile(new Vector3Int(0,0,0), replacementTile);
-
         coroutine = EndGame();
         StartCoroutine(coroutine);
     }

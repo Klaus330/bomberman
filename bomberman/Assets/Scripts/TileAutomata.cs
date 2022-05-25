@@ -44,8 +44,8 @@ public class TileAutomata : MonoBehaviour {
             terrainMap[i, 0] = terrainMap[i,height-1] = 2;
         }          
         terrainMap[1, 1] = terrainMap[1, 2] = terrainMap[2,1]  = 0;
-        terrainMap[width-2, 1] = terrainMap[width-2, 2] = terrainMap[width-3, 1]  = 0;
-        terrainMap[1, height-2] = terrainMap[1, height-2] = terrainMap[2, height-2]  = 0;
+        terrainMap[width-2, 1] = terrainMap[width-2, 2] = terrainMap[width-3, 1]  = 0;  
+        terrainMap[1, height-3] = terrainMap[1, height-2] = terrainMap[2, height-2]  = 0;
         terrainMap[width-3, height-2] = terrainMap[width-2, height-3] = terrainMap[width-2, height-2]  = 0;
 
         for (int x = 0; x < width; x++)
