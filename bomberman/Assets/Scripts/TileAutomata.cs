@@ -9,11 +9,7 @@ public class TileAutomata : MonoBehaviour {
 
     [Range(0,100)]
     public int iniChance;
-    [Range(1,8)]
-    public int birthLimit;
-    [Range(1,8)]
-    public int deathLimit;
-
+    
     [Range(1,10)]
     public int numR;
     private int count = 0;
@@ -41,15 +37,15 @@ public class TileAutomata : MonoBehaviour {
             initPos();
             }
         for(int i = 0; i < height; i++){
-            terrainMap[0, i] = terrainMap[width-1,i] = 2 ;
+            terrainMap[0, i] = terrainMap[width-1,i] = 2;
         }
         
         for(int i = 0; i < width; i++){
-            terrainMap[i, 0] = terrainMap[i,height-1] = 2 ;
+            terrainMap[i, 0] = terrainMap[i,height-1] = 2;
         }          
         terrainMap[1, 1] = terrainMap[1, 2] = terrainMap[2,1]  = 0;
         terrainMap[width-2, 1] = terrainMap[width-2, 2] = terrainMap[width-3, 1]  = 0;
-        terrainMap[1, height-2] = terrainMap[1, height-3] = terrainMap[2, height-2]  = 0;
+        terrainMap[1, height-2] = terrainMap[1, height-2] = terrainMap[2, height-2]  = 0;
         terrainMap[width-3, height-2] = terrainMap[width-2, height-3] = terrainMap[width-2, height-2]  = 0;
 
         for (int x = 0; x < width; x++)

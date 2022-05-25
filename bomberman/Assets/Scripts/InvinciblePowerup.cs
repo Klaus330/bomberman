@@ -6,6 +6,7 @@ public class InvinciblePowerup : MonoBehaviour
 {   
     const string INVINCIBLE_TAG = "Invincible";
     private string PLAYER_TAG = "Player";
+    private string EXPLOSION_TAG = "Explosion";
 
     private void OnTriggerEnter2D(Collider2D other)
     {   
@@ -15,6 +16,11 @@ public class InvinciblePowerup : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("bonus");
             FindObjectOfType<PowerUpRandomSpawner>().emptyCell(transform.position);
             other.gameObject.GetComponent<PlayerReactions>().isInvincible = true;
+            Destroy(gameObject);
+        }
+
+        if (other.gameObject.CompareTag(EXPLOSION_TAG)) {
+            FindObjectOfType<PowerUpRandomSpawner>().emptyCell(transform.position);
             Destroy(gameObject);
         }
     }

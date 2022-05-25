@@ -21,6 +21,7 @@ public class CanMoveBombsPowerUp : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag(EXPLOSION_TAG)) {
+            FindObjectOfType<PowerUpRandomSpawner>().emptyCell(transform.position);
             Destroy(gameObject);
         }
     }

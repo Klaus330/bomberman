@@ -17,11 +17,13 @@ public class MapDestroyer : MonoBehaviour
     public void Explode(Vector2 worldPos, GameObject p, int boost = 1)
     {
         player = p;
-        FindObjectOfType<PowerUpRandomSpawner>().emptyCell(new Vector3(worldPos.x,worldPos.y,0));
+        
         Vector3Int originCell = tilemap.WorldToCell(worldPos);
         ExplodeCell(originCell);
         ExplodeInPositiveDirections(originCell, boost);
         ExplodeInNegativeDirections(originCell, boost);
+
+        FindObjectOfType<PowerUpRandomSpawner>().renderBlockedCells();
     }
 
     void ExplodeInPositiveDirections(Vector3Int originCell, int boost)
@@ -71,6 +73,7 @@ public class MapDestroyer : MonoBehaviour
 
      bool ExplodeCell(Vector3Int cell)
     {
+        FindObjectOfType<PowerUpRandomSpawner>().emptyCell(cell);
         Debug.Log(System.String.Format("Position: {0}", cell));
         Tile cellTile = tilemap.GetTile<Tile>(cell);
 
