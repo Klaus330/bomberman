@@ -22,8 +22,6 @@ public class MapDestroyer : MonoBehaviour
         ExplodeCell(originCell);
         ExplodeInPositiveDirections(originCell, boost);
         ExplodeInNegativeDirections(originCell, boost);
-
-        FindObjectOfType<PowerUpRandomSpawner>().renderBlockedCells();
     }
 
     void ExplodeInPositiveDirections(Vector3Int originCell, int boost)
