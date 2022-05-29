@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3714b8319d6494e9af6a3ec6f36298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPowerUpChance: 0.3
+  player: {fileID: 0}
 --- !u!61 &2714110636924085046
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.84790885, y: 0.8737538}
+  m_Size: {x: 0.66190135, y: 0.68207663}
   m_EdgeRadius: 0
 --- !u!50 &3950966149899887589
 Rigidbody2D:

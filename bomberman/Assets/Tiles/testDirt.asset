@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Wall
+  m_Name: testDirt
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -9074417020404296979, guid: 8c1bae521ca457f4494b37dbca5d9cd9, type: 3}
+  m_Sprite: {fileID: 1229114862393131176, guid: 4b994a191524a9c4fa31ec7d8918487e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -33,4 +33,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 1
+  m_ColliderType: 2
