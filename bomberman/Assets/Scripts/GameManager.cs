@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject gameOverScreen;
+    public GameObject pauseMenu;
+
     public Text winner;
     // Start is called before the first frame update
     void Start()
@@ -27,5 +29,17 @@ public class GameManager : MonoBehaviour
         else
             winner.text = "Player 1";
         gameOverScreen.SetActive(true);
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+        pauseMenu.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
     }
 }
