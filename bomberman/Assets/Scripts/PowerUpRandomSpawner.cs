@@ -130,7 +130,6 @@ public class PowerUpRandomSpawner : MonoBehaviour
     public bool isPositionValidForPlayer(Vector3 poz)
     {
         int cellPosition = cells.FindIndex(cell => cell == tilemapDirt.WorldToCell(poz));
-        // Debug.Log(System.String.Format("Cell Position: {0}", cellPosition));
         Vector3Int cellCenter = cells[cellPosition];
         Tile currentCell = tilemapGameplay.GetTile<Tile>(cellCenter);
         return currentCell != spiralaWall;
@@ -147,6 +146,10 @@ public class PowerUpRandomSpawner : MonoBehaviour
         int ok = 0;
         yield return new WaitForSecondsRealtime(startSpirala);
         buildSpirala = true;
+        if(Random.Range(0f, 1f) > 0.5)
+        {
+            cells.Reverse();
+        }
         while (k * (n + 1) < n * n / 2)
         {
 
